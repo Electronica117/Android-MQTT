@@ -1,0 +1,13 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.Electronica117_MQTT.electronica117_mqtt">
+
+    <application>
+        <service android:name="org.eclipse.paho.android.service.MqttService"/>
+        <provider
+            android:authorities="${applicationId}.MyContext"
+            android:name="com.Electronica117_MQTT.electronica117_mqtt.MyContext"
+            android:exported="false"
+            android:enabled="true"/>
+    </application>
+
+</manifest>
