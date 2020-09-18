@@ -1,0 +1,102 @@
+*{
+  padding: 0;
+  margin: 0;
+}
+html {
+  scroll-behavior: smooth;
+}
+@font-face {
+  font-family: Ailerons;
+  src: url("../../fonts/Ailerons.otf");
+}
+@font-face {
+  font-family: Round;
+  src: url("../../fonts/Round.otf");
+}
+
+
+
+/***** 09/09/2020 ******/
+/***********************/
+/* Inicio de la pagina */
+/***********************/
+.inicio{
+  background-image: url("../img/Inicio/FondoRojo.png");
+  background-size: cover;
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.tituloInicio{
+  width: 100%;
+  height: 20%;
+  color: white;
+  display: flex;
+  justify-content: center;
+}
+.tituloInicio p{
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: Round;
+  font-size: 9vw;
+
+}
+
+.imgInicio{
+  width: 100%;
+  height: 80%;
+  display: flex;
+  align-items: center;
+  justify-content: center; 
+}
+
+.imgInicio img{
+  width: auto;
+  height: auto;
+}
+/** Ajusta la imagen al contenedor */
+@supports(object-fit: cover){
+  .imgInicio img{
+    height: 37vw;
+    object-fit: cover;
+    object-position: center center;
+  }
+}
+
+
+
+
+
+
+@media screen and (max-width: 500px) {
+  .carrousel,
+  .imageContainer {
+    width: 100%;
+  }
+}
+
+
+
+
+
+
+@media screen and (max-width: 1024px) {
+
+
+  /* Inicio */
+  /*.tituloInicio{
+    display: none;
+  }
+  .titulo-mobile-inicio{
+    display: flex;
+  }
+*/
+
+
+}
