@@ -4,7 +4,7 @@
 }
 html {
   scroll-behavior: smooth;
-}
+  }
 @font-face {
   font-family: Ailerons;
   src: url("../../fonts/Ailerons.otf");
@@ -21,21 +21,21 @@ html {
 /* Inicio de la pagina */
 /***********************/
 .inicio{
-  background-image: url("../img/Inicio/FondoRojo.png");
   background-size: cover;
   width: 100%;
-  height: 100vh;
+  height: 30%;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   align-items: center;
-}
-
-.tituloInicio{
-  width: 100%;
-  height: 20%;
-  color: white;
-  display: flex;
   justify-content: center;
+  border-bottom-color: black;
+  border-bottom-style: solid;
+  border-bottom-width: 3px; 
+  background: rgb(3,155,229);
+  background: linear-gradient(90deg, rgba(3,155,229,1) 0%, rgba(255,65,77,1) 100%);
+/*
+background: rgb(80,201,127);
+background: linear-gradient(90deg, rgba(80,201,127,1) 0%, rgba(16,189,222,1) 100%);*/
 }
 .tituloInicio p{
   width: 100%;
@@ -44,31 +44,17 @@ html {
   align-items: center;
   justify-content: center;
   font-family: Round;
+  color: white;
   font-size: 9vw;
-
 }
-
-.imgInicio{
-  width: 100%;
-  height: 80%;
-  display: flex;
-  align-items: center;
-  justify-content: center; 
-}
-
 .imgInicio img{
-  width: auto;
+  width: 10vw;
   height: auto;
+  transition: all 0.5s;
 }
-/** Ajusta la imagen al contenedor */
-@supports(object-fit: cover){
-  .imgInicio img{
-    height: 37vw;
-    object-fit: cover;
-    object-position: center center;
-  }
+.imgInicio img:hover{
+  transform: scale(1.05);
 }
-
 
 
 
