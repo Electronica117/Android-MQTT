@@ -22,22 +22,22 @@ import java.util.Arrays;
 
 public class MQTT  {
 
-    private static MqttAndroidClient instanciaClientMQTT;
+    private static MqttAndroidClient ClientMQTT = null;
     private static MQTTListener myListener;
     private static MQTTCallbackListener myCallback;
     private static String serverMQTT = "tcp://broker.hivemq.com";
     private static String puertoMQTT = "1883";
     private static int Qos = 2;
 
-    public MQTT( ) {
+    public MQTT() {
     }
 
     private static MqttAndroidClient getClientMQTT() {
-        if (instanciaClientMQTT == null) {
+        if (ClientMQTT == null) {
             String clientMQTTId = MqttClient.generateClientId();
-            instanciaClientMQTT = new MqttAndroidClient(MyContext.getMyContext(), serverMQTT + ":" + puertoMQTT, clientMQTTId);
+            ClientMQTT = new MqttAndroidClient(MyContext.getMyContext(), serverMQTT + ":" + puertoMQTT, clientMQTTId);
         }
-        return instanciaClientMQTT;
+        return ClientMQTT;
     }
 
     public static void ConnectMQTT(MQTTListener listener){
@@ -213,6 +213,7 @@ public class MQTT  {
     }
 
     public static void setServer(String server){
+        DeleteClientMQTT();
         serverMQTT = server;
     }
 
@@ -224,8 +225,30 @@ public class MQTT  {
         return puertoMQTT;
     }
 
-    public static void setPuerto(int puerto) {
+    public static void setConnection(String server, int puerto){
+        DeleteClientMQTT();
+        serverMQTT = server;
         puertoMQTT = String.valueOf(puerto);
+    }
+
+    public static void setConnection(String server, String puerto){
+        DeleteClientMQTT();
+        serverMQTT = server;
+        puertoMQTT = puerto;
+    }
+
+    private static void DeleteClientMQTT(){
+        ClientMQTT = null;
+    }
+
+    public static void setPuerto(int puerto) {
+        DeleteClientMQTT();
+        puertoMQTT = String.valueOf(puerto);
+    }
+
+    public static void setPuerto(String puerto) {
+        DeleteClientMQTT();
+        puertoMQTT = puerto;
     }
 
     public static void setQos(int qos) {

@@ -16,17 +16,5 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        MQTT.ConnectMQTT(new MQTTListener() {
-            @Override
-            public void onSuccess() {
-                Toast.makeText(getApplicationContext(), "Conectado", Toast.LENGTH_SHORT).show();
-            }
-
-            @Override
-            public void onFailure() {
-                Toast.makeText(getApplicationContext(), "NO Conectado", Toast.LENGTH_SHORT).show();
-            }
-        });
-
     }
 }
