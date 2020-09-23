@@ -192,6 +192,7 @@ public class MQTT  {
                 token.setActionCallback(new IMqttActionListener() {
                     @Override
                     public void onSuccess(IMqttToken asyncActionToken) {
+                        getClientMQTT().close();
                         myListener.onSuccess();
                     }
 
@@ -212,11 +213,6 @@ public class MQTT  {
         return getClientMQTT().isConnected();
     }
 
-    public static void setServer(String server){
-        DeleteClientMQTT();
-        serverMQTT = server;
-    }
-
     public static String getServer() {
         return serverMQTT;
     }
@@ -225,30 +221,36 @@ public class MQTT  {
         return puertoMQTT;
     }
 
+    public static void setServer(String server){
+        closeClientMQTT();
+        serverMQTT = server;
+    }
+
+    public static void setPuerto(int puerto) {
+        closeClientMQTT();
+        puertoMQTT = String.valueOf(puerto);
+    }
+
+    public static void setPuerto(String puerto) {
+        closeClientMQTT();
+        puertoMQTT = puerto;
+    }
+
     public static void setConnection(String server, int puerto){
-        DeleteClientMQTT();
+        closeClientMQTT();
         serverMQTT = server;
         puertoMQTT = String.valueOf(puerto);
     }
 
     public static void setConnection(String server, String puerto){
-        DeleteClientMQTT();
+        closeClientMQTT();
         serverMQTT = server;
         puertoMQTT = puerto;
     }
 
-    private static void DeleteClientMQTT(){
+    private static void closeClientMQTT(){
+        getClientMQTT().close();
         ClientMQTT = null;
-    }
-
-    public static void setPuerto(int puerto) {
-        DeleteClientMQTT();
-        puertoMQTT = String.valueOf(puerto);
-    }
-
-    public static void setPuerto(String puerto) {
-        DeleteClientMQTT();
-        puertoMQTT = puerto;
     }
 
     public static void setQos(int qos) {
@@ -262,4 +264,6 @@ public class MQTT  {
     public static int getQos() {
         return Qos;
     }
+
+
 }
