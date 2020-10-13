@@ -15,6 +15,7 @@ import org.eclipse.paho.client.mqttv3.IMqttDeliveryToken;
 import org.eclipse.paho.client.mqttv3.IMqttToken;
 import org.eclipse.paho.client.mqttv3.MqttCallback;
 import org.eclipse.paho.client.mqttv3.MqttClient;
+import org.eclipse.paho.client.mqttv3.MqttConnectOptions;
 import org.eclipse.paho.client.mqttv3.MqttException;
 import org.eclipse.paho.client.mqttv3.MqttMessage;
 import java.io.UnsupportedEncodingException;
@@ -39,6 +40,34 @@ public class MQTT  {
         }
         return ClientMQTT;
     }
+
+    public static void ConnectMQTTWithUser(String user, String pass, MQTTListener listener){
+        myListener = listener;
+        MqttConnectOptions options = new MqttConnectOptions();
+        options.setMqttVersion(MqttConnectOptions.MQTT_VERSION_3_1);
+        options.setUserName(user);
+        options.setPassword(pass.toCharArray());
+        try {
+            if (!getClientMQTT().isConnected()){
+                IMqttToken token = getClientMQTT().connect(options);
+                token.setActionCallback(new IMqttActionListener() {
+                    @Override
+                    public void onSuccess(IMqttToken asyncActionToken) {
+                        myListener.onSuccess();
+                    }
+                    @Override
+                    public void onFailure(IMqttToken asyncActionToken, Throwable exception) {
+                        myListener.onFailure();
+                    }
+                });
+            }else{
+                myListener.onSuccess();
+            }
+        } catch (MqttException e) {
+            e.printStackTrace();
+        }
+    }
+
 
     public static void ConnectMQTT(MQTTListener listener){
         myListener = listener;
@@ -264,6 +293,8 @@ public class MQTT  {
     public static int getQos() {
         return Qos;
     }
+
+
 
 
 }
